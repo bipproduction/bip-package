@@ -28,7 +28,9 @@ const funGoogleSheet = async ({ spreadsheetId, range }: ModelFunGoogleSheet) => 
         range: range
     })
 
-    return dt.data.values
+    const result = dt.data.values
+
+    return result
 
 }
 
