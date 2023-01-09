@@ -7,23 +7,28 @@ const auth = new google.auth.GoogleAuth({
     scopes: "https://www.googleapis.com/auth/spreadsheets",
 });
 
-const funGoogleSheet = async () => {
+
+type ModelFunGoogleSheet = {
+    spreadsheetId: string
+    range: string
+}
+const funGoogleSheet = async ({ spreadsheetId, range }: ModelFunGoogleSheet) => {
     const authClientObject = await auth.getClient();
     const googleSheetsInstance = google.sheets({ version: "v4", auth: authClientObject });
-    const spreadsheetId = "1H32By3EEy3ft9UFCHtm3OHlYbBBl47egi061In9PMiw";
+    // const spreadsheetId = "1H32By3EEy3ft9UFCHtm3OHlYbBBl47egi061In9PMiw";
 
-    const readData = await googleSheetsInstance.spreadsheets.values.get({
-        auth, //auth object
-        spreadsheetId, // spreadsheet id
-        range: "Sheet1",
-    })
+    // const readData = await googleSheetsInstance.spreadsheets.values.get({
+    //     auth, //auth object
+    //     spreadsheetId, // spreadsheet id
+    //     range: "Sheet1",
+    // })
 
     const dt = await googleSheetsInstance.spreadsheets.values.get({
         spreadsheetId: spreadsheetId,
-        range: "Sheet1"
+        range: range
     })
 
-    return dt
+    return dt.data.values
 
 }
 
