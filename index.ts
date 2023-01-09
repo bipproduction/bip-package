@@ -5,4 +5,6 @@ const BipPackage = {
     googSheet: funGoogleSheet
 }
 
-export default BipPackage
+export {
+    funGoogleSheet
+}
